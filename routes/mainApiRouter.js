@@ -1,10 +1,16 @@
 const express = require("express")
+const deleteCar = require("../controllers/deleteCar")
 const getCars = require("../controllers/getCars")
-const errorHandlerMiddleware = require("../middleware/error-handler")
+const createCar = require("../controllers/createCar")
+const updateCar = require("../controllers/updateCar")
 
 const router = express.Router()
 
-router.route("/").get((req, res) => res.send("Get Main Page"))
-router.route("/getCars").get(getCars)
+router
+	.route("/cars")
+	.get(getCars)
+	.delete(deleteCar)
+	.post(createCar)
+	.patch(updateCar)
 
 module.exports = router
