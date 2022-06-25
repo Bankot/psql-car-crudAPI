@@ -4,11 +4,10 @@ const badRequestError = require("../errors/badRequestError")
 const updateCar = async (req, res, next) => {
 	const { id, model, price, hp } = req.body
 	//if authenticated
+
 	if (id && model && price && hp) {
 		db.query(
-			`UPDATE cars SET
-			Model = '${model}' ,
-			Price = ${price},
+			`UPDATE cars SET Model = '${model}',  Price = ${price},
 			HorsePower = ${hp}
 			WHERE id = ${id};`,
 			(err, result) => {

@@ -1,8 +1,16 @@
 const db = require("../db/dbConnect")
 const notFoundError = require("../errors/notFoundError")
+const queryCreator = require("../helpful-scripts/getQueryHelper")
+
+/*/ accepted query params: orderBy: <'price', 'horsepower'>,
+by default ordered ASCENDING, to order it DESCENDING use param desc=true
+can be grouped just by model name, if you pass param model = <'model name'>
+sample call : .../api/cars?orderBy=price&model=Passat&desc=true
+/*/
 
 const getCars = async (req, res, next) => {
-	await db.query("SELECT * FROM cars", (err, result) => {
+	const paramQuery = queryCreator(req.query)
+	await db.query(`SELECT * FROM cars ${paramQuery}`, (err, result) => {
 		if (err) {
 			next(new notFoundError(err.message))
 		} else {
