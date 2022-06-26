@@ -5,7 +5,8 @@ const updateCar = async (req, res, next) => {
 	const { id, model, price, hp } = req.body
 	//if authenticated
 
-	if (id && model && price && hp) {
+	// i think it would be much easier and scalable to use some ORM...
+	if (id && (model || price || hp)) {
 		db.query(
 			`UPDATE cars SET Model = '${model}',  Price = ${price},
 			HorsePower = ${hp}

@@ -1,13 +1,16 @@
-const queryCreator = (query) => {
+// I know its not scalable at all, gonna work on it!
+
+const queryCreator = (query, orderOptions) => {
 	const { orderBy, model, desc } = query
-	const arrOfOrderOptions = ["PRICE", "HORSEPOWER"]
-	if ((orderBy && arrOfOrderOptions.includes(orderBy.toUpperCase())) || model) {
+
+	if ((orderBy && orderOptions.includes(orderBy.toUpperCase())) || model) {
 		let result = ""
 
-		if (model) result = `WHERE Model LIKE '%${model}%' `
+		if (model) result = `WHERE Model iLIKE '%${model}%' `
 		if (orderBy) result += `ORDER BY ${orderBy} `
 		if (desc !== undefined) result += ` DESC `
 		// return query
+		console.log(result)
 		return result
 	}
 }

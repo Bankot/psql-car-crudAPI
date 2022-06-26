@@ -9,7 +9,7 @@ sample call : .../api/cars?orderBy=price&model=Passat&desc=true
 /*/
 
 const getCars = async (req, res, next) => {
-	const paramQuery = queryCreator(req.query)
+	const paramQuery = queryCreator(req.query, ["PRICE", "HORSEPOWER"])
 	await db.query(`SELECT * FROM cars ${paramQuery}`, (err, result) => {
 		if (err) {
 			next(new notFoundError(err.message))
