@@ -1,6 +1,5 @@
 const db = require("../db/dbConnect")
 const badRequestError = require("../errors/badRequestError")
-const updateCar = require("./updateCar")
 
 const createCar = async (req, res, next) => {
 	const { model, price, hp } = req.body
@@ -17,4 +16,4 @@ const createCar = async (req, res, next) => {
 	)
 }
 
-module.exports = updateCar
+module.exports = createCar
